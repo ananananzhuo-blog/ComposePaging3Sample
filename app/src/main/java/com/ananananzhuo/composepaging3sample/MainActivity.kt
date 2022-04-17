@@ -46,7 +46,7 @@ fun Greeting() {
         composable(PAGE2) {
             refreshLoadUse()
         }
-        composable(PAGE3){
+        composable(PAGE3) {
             RoomLoadPage()
         }
     }
@@ -57,7 +57,7 @@ fun home(navController: NavHostController) {
     ListView(datas = mutableListOf(
         ItemData(title = "简单使用Paging加载数据", tag = PAGE1),
         ItemData(title = "使用Paging3实现刷新和加载功能", tag = PAGE2),
-        ItemData(title = "Room数据库配合Paging3使用", tag = PAGE3),
+        ItemData(title = "Room数据库+远程请求+Paging3实现Paging3中数据的插入和删除", tag = PAGE3),
     ), click = { itemData: ItemData, _, _ ->
         navController.navigate(itemData.tag)
     })
