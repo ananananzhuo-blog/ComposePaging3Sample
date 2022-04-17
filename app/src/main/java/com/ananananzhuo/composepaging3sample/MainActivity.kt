@@ -15,7 +15,9 @@ import com.ananananzhuo.composelib.bean.ItemData
 import com.ananananzhuo.composelib.constants.HOME
 import com.ananananzhuo.composelib.constants.PAGE1
 import com.ananananzhuo.composelib.constants.PAGE2
+import com.ananananzhuo.composelib.constants.PAGE3
 import com.ananananzhuo.composepaging3sample.refresh.refreshLoadUse
+import com.ananananzhuo.composepaging3sample.roomload.RoomLoadPage
 import com.ananananzhuo.composepaging3sample.ui.theme.ComposePaging3SampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,6 +46,9 @@ fun Greeting() {
         composable(PAGE2) {
             refreshLoadUse()
         }
+        composable(PAGE3){
+            RoomLoadPage()
+        }
     }
 }
 
@@ -52,6 +57,7 @@ fun home(navController: NavHostController) {
     ListView(datas = mutableListOf(
         ItemData(title = "简单使用Paging加载数据", tag = PAGE1),
         ItemData(title = "使用Paging3实现刷新和加载功能", tag = PAGE2),
+        ItemData(title = "Room数据库配合Paging3使用", tag = PAGE3),
     ), click = { itemData: ItemData, _, _ ->
         navController.navigate(itemData.tag)
     })

@@ -2,6 +2,7 @@ package com.ananananzhuo.composepaging3sample.refresh
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -51,7 +52,10 @@ fun refreshLoadUse() {
                                 color = Color.Red,
                                 shape = RoundedCornerShape(8.dp)
                             )
-                            .padding(start = 10.dp),
+                            .padding(start = 10.dp)
+                            .clickable {
+                                       collectAsLazyPagingItems.refresh()
+                            },
                         contentAlignment = Alignment.CenterStart
                     ) {
                         Text(text = refreshData?.data ?: "")
