@@ -96,10 +96,14 @@ class RoomLoadPageModel : ViewModel() {
     val projects = Pager(
         PagingConfig(pageSize = 20),
         remoteMediator = RoomRemoteMediator(callback = { loadType, pagingState ->
-            Goods("商品：${++count}").let {
-                db.goodsDao().insertAll(it)
+            if (count>20){
+                RemoteMediator.MediatorResult.Success(true)
+            }else{
+                Goods("商品：${++count}").let {
+                    db.goodsDao().insertAll(it)
+                }
+                RemoteMediator.MediatorResult.Success(false)
             }
-            RemoteMediator.MediatorResult.Success(false)
         }),
     ) {
         val start = System.currentTimeMillis()
