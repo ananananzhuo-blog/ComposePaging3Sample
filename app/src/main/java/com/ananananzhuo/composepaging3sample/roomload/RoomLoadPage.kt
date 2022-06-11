@@ -163,7 +163,7 @@ interface GoodsDao {
     @Query("SELECT * FROM goods")
     fun getAll1(): PagingSource<Int, Goods>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg users: Goods)
 
     @Insert

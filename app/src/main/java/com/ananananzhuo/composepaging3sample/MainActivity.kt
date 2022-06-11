@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SnapshotMutationPolicy
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshots.Snapshot
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,6 +34,11 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+    val s = mutableStateOf<String>("", policy = object : SnapshotMutationPolicy<String> {
+        override fun equivalent(a: String, b: String): Boolean {
+           return false
+        }
+    })
 }
 
 @Composable
@@ -61,4 +69,9 @@ fun home(navController: NavHostController) {
     ), click = { itemData: ItemData, _, _ ->
         navController.navigate(itemData.tag)
     })
+    Snapshot.takeMutableSnapshot {
+        12
+    }.enter {
+
+    }
 }
